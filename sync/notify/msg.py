@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 
 from six import iteritems, iterkeys, itervalues
 from six.moves import urllib
@@ -52,7 +52,8 @@ def status_str(result,  # type: Union[Result, SubtestResult, TestResult]
 
     if include_other_browser:
         other_browser_values = []
-        for other_browser, job_results in iteritems(result.statuses):
+        ordered_statuses = OrderedDict(sorted(result.statuses.items()))
+        for other_browser, job_results in iteritems(ordered_statuses):
             if other_browser == browser:
                 continue
             browser_status = job_results.get("GitHub")
