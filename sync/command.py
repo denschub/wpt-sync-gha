@@ -588,7 +588,7 @@ def do_test(**kwargs):
             args.append("test")
 
         logger.info("Running pytest")
-        cmd = ["pytest", "-s", "-v", "-p", "no:cacheprovider"] + args
+        cmd = ["pytest", "-s", "-vv", "-p", "no:cacheprovider"] + args
         subprocess.check_call(cmd, cwd="/app/wpt-sync/")
 
 
